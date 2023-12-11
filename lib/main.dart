@@ -21,13 +21,14 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        initialRoute: Routes.onBoardingScreen,
+        initialRoute: Routes.splashScreen,
         title: 'First Method',
         theme: ThemeData(
           primaryColor: ColorsManager.primaryColor,
           scaffoldBackgroundColor: Colors.white,
         ),
-        onGenerateRoute: appRouter.generateRoute, // Assigning the appRouter here
+        onGenerateRoute:
+            appRouter.generateRoute, // Assigning the appRouter here
       ),
     );
   }
