@@ -1,3 +1,4 @@
+import 'package:doc_appointment/Features/Splash/view/splash_view.dart';
 import 'package:doc_appointment/Features/login/view/login_view.dart';
 import 'package:doc_appointment/Features/onBoarding/view/onBoarding_view.dart';
 import 'package:doc_appointment/cors/Routing/routes.dart';
@@ -11,8 +12,8 @@ class AppRouter {
       case Routes.loginScreen:
         return MaterialPageRoute(builder: (context) => LoginScreenView());
 
-      // case '/register':
-      // return MaterialPageRoute(builder: (context) => RegisterPage());
+      case '/splashScreen':
+        return MaterialPageRoute(builder: (context) => SplashView());
       // case '/home':
       // return MaterialPageRoute(builder: (context) => HomePage());
       // case '/profile':
