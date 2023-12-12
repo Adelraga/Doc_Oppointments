@@ -1,4 +1,4 @@
-import 'package:doc_appointment/Features/onBoarding/view/widgets/CustomButton.dart';
+import 'package:doc_appointment/cors/Widgets/CustomButton.dart';
 import 'package:doc_appointment/Features/onBoarding/view/widgets/doc_logo_widget.dart';
 import 'package:doc_appointment/Features/onBoarding/view/widgets/doctor_image_and_text.dart';
 import 'package:doc_appointment/cors/Helpers/navigation_extention.dart';

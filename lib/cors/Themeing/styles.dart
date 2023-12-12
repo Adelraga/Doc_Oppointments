@@ -28,4 +28,14 @@ abstract class Styles {
     fontSize: 16,
     fontWeight: FontWeight.w600,
   );
+  static const font24blue700weight = TextStyle(
+    fontSize: 24,
+    color: ColorsManager.primaryColor,
+    fontWeight: FontWeight.w700,
+  );
+  static const font12Gray400weight = TextStyle(
+    color: Color(0xFF9E9E9E),
+    fontSize: 15,
+    fontWeight: FontWeight.w400,
+  );
 }
