@@ -9,6 +9,7 @@ import 'package:doc_appointment/cors/Widgets/CustomButton.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CutomForm extends StatefulWidget {
   CutomForm({super.key});
@@ -23,6 +24,7 @@ class _CutomFormState extends State<CutomForm> {
   String? password;
 
   bool isLoading = false;
+  bool isObscureText = true;
 
   final formKey = GlobalKey<FormState>();
 
@@ -37,7 +39,7 @@ class _CutomFormState extends State<CutomForm> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            SizedBox(height: 36),
+            SizedBox(height: 36.h),
             CustomTextField(
               keyboardType: TextInputType.emailAddress,
               onChanged: (data) {
@@ -46,7 +48,7 @@ class _CutomFormState extends State<CutomForm> {
               hintText: 'Email Address',
             ),
             SizedBox(
-              height: 16,
+              height: 16.h,
             ),
             CustomTextField(
               keyboardType: TextInputType.visiblePassword,
@@ -54,13 +56,22 @@ class _CutomFormState extends State<CutomForm> {
                 password = data;
               },
               hintText: 'Password',
+              obscureText: isObscureText,
+              suffixIcon: GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      isObscureText = !isObscureText;
+                    });
+                  },
+                  child: Icon(
+                      isObscureText ? Icons.visibility_off : Icons.visibility)),
             ),
             SizedBox(
-              height: 5,
+              height: 5.h,
             ),
             ForgetPasswordAndRememberMeRow(),
             SizedBox(
-              height: 30,
+              height: 30.h,
             ),
             CustomButton(
               buttonColor: ColorsManager.primaryColor,
@@ -71,11 +82,11 @@ class _CutomFormState extends State<CutomForm> {
               textColor: const Color.fromARGB(255, 255, 255, 255),
             ),
             SizedBox(
-              height: 46,
+              height: 46.h,
             ),
             OrSignInWithCustomWidget(),
             SizedBox(
-              height: 62,
+              height: 50.h,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -84,11 +95,11 @@ class _CutomFormState extends State<CutomForm> {
               ],
             ),
             SizedBox(
-              height: 32,
+              height: 32.h,
             ),
             PrivacyPolicyText(),
             SizedBox(
-              height: 24,
+              height: 24.h,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,

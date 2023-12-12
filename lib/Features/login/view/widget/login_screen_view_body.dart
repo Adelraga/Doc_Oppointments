@@ -2,6 +2,7 @@ import 'package:doc_appointment/Features/login/view/widget/customForm.dart';
 import 'package:doc_appointment/cors/Themeing/constant.dart';
 import 'package:doc_appointment/cors/Themeing/styles.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class LoginScreenViewBody extends StatelessWidget {
   const LoginScreenViewBody({super.key});
@@ -12,7 +13,7 @@ class LoginScreenViewBody extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.only(left: 31),
         child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-          SizedBox(height: 50),
+          SizedBox(height: 50.h),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -23,7 +24,7 @@ class LoginScreenViewBody extends StatelessWidget {
               ),
               SizedBox(height: 8),
               SizedBox(
-                width: 330,
+                width: 330.w,
                 child: Text(
                   AssetsData.loginTextHeader,
                   style: Styles.font15Weight400,
