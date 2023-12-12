@@ -24,6 +24,7 @@ class _CutomFormState extends State<CutomForm> {
   String? password;
 
   bool isLoading = false;
+  bool isObscureText = true;
 
   final formKey = GlobalKey<FormState>();
 
@@ -55,6 +56,15 @@ class _CutomFormState extends State<CutomForm> {
                 password = data;
               },
               hintText: 'Password',
+              obscureText: isObscureText,
+              suffixIcon: GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      isObscureText = !isObscureText;
+                    });
+                  },
+                  child: Icon(
+                      isObscureText ? Icons.visibility_off : Icons.visibility)),
             ),
             SizedBox(
               height: 5.h,
@@ -68,9 +78,7 @@ class _CutomFormState extends State<CutomForm> {
               width: MediaQuery.of(context).size.width * .87,
               height: MediaQuery.of(context).size.width * .12,
               title: 'Login',
-              onPressed: () {
-                
-              },
+              onPressed: () {},
               textColor: const Color.fromARGB(255, 255, 255, 255),
             ),
             SizedBox(
