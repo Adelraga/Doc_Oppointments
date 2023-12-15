@@ -13,11 +13,10 @@ class LoginScreenViewBody extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.only(left: 31),
         child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-          SizedBox(height: 50.h),
+          SizedBox(height: 35.h),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 10),
               Text(
                 "Welcome Back 👋",
                 style: Styles.font24blue700weight,

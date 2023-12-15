@@ -8,8 +8,8 @@ class ForgetPasswordAndRememberMeRow extends StatefulWidget {
 }
 
 class _ForgetPasswordAndRememberMeRowState extends State<ForgetPasswordAndRememberMeRow> {
+  bool isChecked = false;
   @override
-    bool isChecked = false;
   Widget build(BuildContext context) {
     return            Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
