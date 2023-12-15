@@ -1,13 +1,12 @@
 import 'package:doc_appointment/Features/login/view/widget/custom_soical_icon_item.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class CustomLoginSocialIcons extends StatelessWidget {
   const CustomLoginSocialIcons({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return const Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         CustomSoicalIconItem(

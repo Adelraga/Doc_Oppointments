@@ -1,11 +1,17 @@
+import 'package:doc_appointment/bloc_observe.dart';
+import 'package:doc_appointment/cors/DI/dependency_injection.dart';
 import 'package:doc_appointment/cors/Routing/app_router.dart';
 import 'package:doc_appointment/cors/Routing/routes.dart';
 import 'package:doc_appointment/cors/Themeing/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() {
-  runApp(MyApp(
+  initGetIt();
+   Bloc.observer=SimpleBlocObserver();
+  runApp(
+    MyApp(
     appRouter: AppRouter(),
   ));
 }
