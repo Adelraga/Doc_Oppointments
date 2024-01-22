@@ -7,11 +7,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-void main() {
+void main() async {
   initGetIt();
-   Bloc.observer=SimpleBlocObserver();
-  runApp(
-    MyApp(
+  await ScreenUtil
+      .ensureScreenSize(); // to  solve the text disappearing on release mode
+  Bloc.observer = SimpleBlocObserver();
+  runApp(MyApp(
     appRouter: AppRouter(),
   ));
 }
