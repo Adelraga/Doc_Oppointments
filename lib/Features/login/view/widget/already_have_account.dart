@@ -1,3 +1,4 @@
+import 'package:doc_appointment/Features/signup/presentation/screens/sign_up_screen.dart';
 import 'package:flutter/material.dart';
 
 class AlreadyHaveAccount extends StatelessWidget {
@@ -8,11 +9,11 @@ class AlreadyHaveAccount extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text("Already have an account yet?"),
+        Text("Don't have an account yet?"),
         TextButton(
           onPressed: () {
             Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return Placeholder();
+              return SignupScreenView();
             }));
           },
           child: Text(
