@@ -12,7 +12,7 @@ class SignupRequestBody {
   final String passwordConfirmation;
   final int gender;
 
-  SignupRequestBody(this.name, this.phone, this.passwordConfirmation, this.gender, {required this.email, required this.password});
+  SignupRequestBody( {required this.email, required this.password, required this.name,required this.phone,required this.passwordConfirmation,required this.gender,});
 
   Map<String, dynamic> toJson() => _$SignupRequestBodyToJson(this);
 }
