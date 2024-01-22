@@ -167,9 +167,7 @@ class _CutomFormState extends State<CutomForm> {
 
 void validateLoginScreenToLogIn(BuildContext context) {
   if (context.read<LoginCubit>().formKey.currentState!.validate()) {
-    context.read<LoginCubit>().login(LoginRequestBody(
-        email: context.read<LoginCubit>().emailController.text,
-        password: context.read<LoginCubit>().passwordController.text));
+    context.read<LoginCubit>().login();
   }
 }
 

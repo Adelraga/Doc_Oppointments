@@ -2,6 +2,8 @@ import 'package:doc_appointment/Features/Splash/view/splash_view.dart';
 import 'package:doc_appointment/Features/login/logic/cubit/login_cubit.dart';
 import 'package:doc_appointment/Features/login/view/login_view.dart';
 import 'package:doc_appointment/Features/onBoarding/view/onBoarding_view.dart';
+import 'package:doc_appointment/Features/signup/logic/sign_Up_cubit/sign_up_cubit.dart';
+import 'package:doc_appointment/Features/signup/presentation/screens/sign_up_screen.dart';
 import 'package:doc_appointment/cors/DI/dependency_injection.dart';
 import 'package:doc_appointment/cors/Routing/routes.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +20,13 @@ class AppRouter {
             builder: (context) => BlocProvider(
                   create: (context) => getIt<LoginCubit>(),
                   child: const LoginScreenView(),
+                ));
+
+      case Routes.signUppScreen:
+        return MaterialPageRoute(
+            builder: (context) => BlocProvider(
+                  create: (context) => getIt<SignUpCubit>(),
+                  child: const SignupScreenView(),
                 ));
 
       case '/splashScreen':

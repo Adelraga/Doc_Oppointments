@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:doc_appointment/Features/login/data/models/login_request_body.dart';
 import 'package:doc_appointment/Features/login/data/models/login_response.dart';
+import 'package:doc_appointment/Features/signup/data/models/signup_request_body.dart';
+import 'package:doc_appointment/Features/signup/data/models/signup_response.dart';
 import 'package:doc_appointment/cors/Networking/api_constants.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:retrofit/retrofit.dart';
@@ -12,6 +14,9 @@ abstract class ApiService {
 
   @POST(ApiConstants.login) // the endpoint
   Future<LoginResponse> login( @Body() LoginRequestBody loginRequestBody);
+
+  @POST(ApiConstants.signup)
+  Future<SignupResponse> signup( @Body() SignupRequestBody loginRequestBody);
 
   // // ignore: unnecessary_brace_in_string_interps
   // @GET('/users/{id}') // the endpoint
