@@ -1,39 +1,38 @@
-import 'package:doc_appointment/Features/login/data/models/login_request_body.dart';
-import 'package:doc_appointment/Features/login/logic/cubit/login_cubit.dart';
-import 'package:doc_appointment/Features/login/view/widget/already_have_account.dart';
 import 'package:doc_appointment/Features/login/view/widget/custom_login_social_icons_row.dart';
-import 'package:doc_appointment/Features/login/view/widget/custom_row_forget_password_and_remember_me.dart';
 import 'package:doc_appointment/Features/login/view/widget/custom_snackbar.dart';
 import 'package:doc_appointment/Features/login/view/widget/custom_text_field.dart';
-import 'package:doc_appointment/Features/login/view/widget/login_bloc_listner.dart';
 import 'package:doc_appointment/Features/login/view/widget/or_signIn_with_custom_widget.dart';
 import 'package:doc_appointment/Features/login/view/widget/password_validations.dart';
-import 'package:doc_appointment/Features/login/view/widget/privacy_policy_text.dart';
+import 'package:doc_appointment/Features/signup/logic/sign_Up_cubit/sign_up_cubit.dart';
+import 'package:doc_appointment/Features/signup/presentation/widgets/already_have_account.dart';
+import 'package:doc_appointment/Features/signup/presentation/widgets/password_validation.dart';
 import 'package:doc_appointment/cors/Helpers/navigation_extention.dart';
 import 'package:doc_appointment/cors/Routing/routes.dart';
 import 'package:doc_appointment/cors/Themeing/colors.dart';
 import 'package:doc_appointment/cors/Widgets/CustomButton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class CutomForm extends StatefulWidget {
-  CutomForm({super.key});
+class CutomFormSignUp extends StatefulWidget {
+  CutomFormSignUp({super.key});
 
   @override
-  State<CutomForm> createState() => _CutomFormState();
+  State<CutomFormSignUp> createState() => _CutomFormState();
 }
 
-class _CutomFormState extends State<CutomForm> {
+class _CutomFormState extends State<CutomFormSignUp> {
   String? email;
-
   String? password;
+  String? name;
+  String? phome;
+  String? passwordConfirmation;
+  String? gender;
 
   bool isLoading = false;
   bool isObscureText = true;
 
-  late TextEditingController passwordController;
+  // late TextEditingController passwordController;
 
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
 
@@ -41,13 +40,13 @@ class _CutomFormState extends State<CutomForm> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    passwordController = context.read<LoginCubit>().passwordController;
+    // passwordController = context.read<SignUpCubit>().passwordController;
   }
 
   Widget build(BuildContext context) {
-    return BlocListener<LoginCubit, LoginState>(
+    return BlocListener<SignUpCubit, SignUpState>(
       listener: (context, state) {
-       if (state is LoginLoading) {
+        if (state is SignUpLoading) {
           showDialog(
             context: context,
             builder: (context) => Center(
@@ -57,19 +56,18 @@ class _CutomFormState extends State<CutomForm> {
             ),
           );
         }
-        if (state is LoginSuccess) {
-          Showsnackbar(context, "Login Successfully 😊");
+        if (state is SignUpSuccess) {
           context.pop();
+          Showsnackbar(context, "Sign Up Successfully 😊");
           context.pushNamed(Routes.homeScreen);
         }
-        if (state is LoginFailure) {
+        if (state is SignUpFailure) {
           context.pop();
-          Showsnackbar(context, state.errMessage); 
+          Showsnackbar(context, state.errMessage);
         }
-
       },
       child: Form(
-        key: context.read<LoginCubit>().formKey,
+        key: context.read<SignUpCubit>().formKey,
         autovalidateMode: autovalidateMode,
         child: SingleChildScrollView(
           child: Column(
@@ -77,8 +75,24 @@ class _CutomFormState extends State<CutomForm> {
             children: [
               SizedBox(height: 36.h),
               CustomTextField(
+                keyboardType: TextInputType.name,
+                controller: context.read<SignUpCubit>().nameController,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "Please Enter Your Name";
+                  }
+                },
+                onChanged: (data) {
+                  name = data;
+                },
+                hintText: 'User Name',
+              ),
+              SizedBox(
+                height: 16.h,
+              ),
+              CustomTextField(
                 keyboardType: TextInputType.emailAddress,
-                controller: context.read<LoginCubit>().emailController,
+                controller: context.read<SignUpCubit>().emailController,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return "Please Enter Your Email";
@@ -93,7 +107,7 @@ class _CutomFormState extends State<CutomForm> {
                 height: 16.h,
               ),
               CustomTextField(
-                controller: context.read<LoginCubit>().passwordController,
+                controller: context.read<SignUpCubit>().passwordController,
                 keyboardType: TextInputType.visiblePassword,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -116,13 +130,73 @@ class _CutomFormState extends State<CutomForm> {
                         : Icons.visibility)),
               ),
               SizedBox(
-                height: 5.h,
+                height: 16.h,
               ),
-              ForgetPasswordAndRememberMeRow(),
+              CustomTextField(
+                controller: context.read<SignUpCubit>().phoneController,
+                keyboardType: TextInputType.phone,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter Phone';
+                  }
+                },
+                onChanged: (data) {
+                  phome = data;
+                },
+                hintText: 'Phone',
+                obscureText: isObscureText,
+              ),
+              SizedBox(
+                height: 16.h,
+              ),
+              CustomTextField(
+                controller: context.read<SignUpCubit>().genderController,
+                keyboardType: TextInputType.text,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter Your Gender';
+                  }
+                },
+                onChanged: (data) {
+                  gender = data;
+                },
+                hintText: 'Gender',
+                obscureText: isObscureText,
+              ),
+              SizedBox(
+                height: 16.h,
+              ),
+              CustomTextField(
+                controller:
+                    context.read<SignUpCubit>().passwordConfirmationController,
+                keyboardType: TextInputType.visiblePassword,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return ' Renter password';
+                  }
+                },
+                onChanged: (data) {
+                  passwordConfirmation = data;
+                },
+                hintText: 'Confirm Password',
+                obscureText: isObscureText,
+                suffixIcon: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        isObscureText = !isObscureText;
+                      });
+                    },
+                    child: Icon(isObscureText
+                        ? Icons.visibility_off
+                        : Icons.visibility)),
+              ),
               SizedBox(
                 height: 5.h,
               ),
-              PasswordValidations(),
+              SizedBox(
+                height: 5.h,
+              ),
+              PasswordValidation(),
               SizedBox(
                 height: 30.h,
               ),
@@ -130,7 +204,7 @@ class _CutomFormState extends State<CutomForm> {
                 buttonColor: ColorsManager.primaryColor,
                 width: MediaQuery.of(context).size.width * .87,
                 height: MediaQuery.of(context).size.width * .12,
-                title: 'Login',
+                title: 'Register',
                 onPressed: () {
                   validateLoginScreenToLogIn(context);
                 },
@@ -152,11 +226,11 @@ class _CutomFormState extends State<CutomForm> {
               SizedBox(
                 height: 22.h,
               ),
-              PrivacyPolicyText(),
+              // PrivacyPolicyText(),
               SizedBox(
                 height: 5.h,
               ),
-              AlreadyHaveAccount(),
+              CustomAlreadyHaveAccount(),
               //LoginBlocListener(),
             ],
           ),
@@ -167,8 +241,8 @@ class _CutomFormState extends State<CutomForm> {
 }
 
 void validateLoginScreenToLogIn(BuildContext context) {
-  if (context.read<LoginCubit>().formKey.currentState!.validate()) {
-    context.read<LoginCubit>().login();
+  if (context.read<SignUpCubit>().formKey.currentState!.validate()) {
+    context.read<SignUpCubit>().Signup();
   }
 }
 

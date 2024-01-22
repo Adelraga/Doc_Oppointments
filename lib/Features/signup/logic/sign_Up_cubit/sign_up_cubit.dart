@@ -15,6 +15,7 @@ class SignUpCubit extends Cubit<SignUpState> {
   TextEditingController emailController = TextEditingController();
   TextEditingController nameController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
+  TextEditingController genderController = TextEditingController();
   TextEditingController passwordConfirmationController =
       TextEditingController();
   final formKey = GlobalKey<FormState>();
@@ -23,9 +24,18 @@ class SignUpCubit extends Cubit<SignUpState> {
 
   SignUpCubit(this.signupRepo) : super(SignUpInitial());
 
-  Future<void> login(SignupRequestBody signUpRequestBody) async {
+  Future<void> Signup() async {
     emit(SignUpLoading());
-    var result = await signupRepo.Signup(signUpRequestBody);
+    var result = await signupRepo.Signup(
+      SignupRequestBody(
+        email: emailController.text,
+        password: passwordController.text,
+        name: nameController.text,
+        phone: phoneController.text,
+        gender: int.parse(genderController.text),
+        passwordConfirmation: passwordConfirmationController.text,
+      ),
+    );
     result.fold((failure) => {emit(SignUpFailure(failure.errMessage))},
         (response) => {emit(SignUpSuccess(response))});
   }

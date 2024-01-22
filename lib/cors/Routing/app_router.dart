@@ -24,13 +24,12 @@ class AppRouter {
 
       case Routes.signUppScreen:
         return MaterialPageRoute(
-            builder: (context) => BlocProvider(
-                  create: (context) => getIt<SignUpCubit>(),
-                  child: const SignupScreenView(),
-                ));
+            builder: (context) => const SignupScreenView());
 
       case '/splashScreen':
         return MaterialPageRoute(builder: (context) => SplashView());
+
+        
       case  Routes.homeScreen:
       return MaterialPageRoute(builder: (context) => Placeholder());
       // case '/profile':
